@@ -3,7 +3,7 @@ import { Container } from "./styles"
 const Transactions = () => {
   return (
     <Container>
-      {/* <table>
+      <table>
         <thead>
           <tr>
             <th>Título</th>
@@ -15,10 +15,19 @@ const Transactions = () => {
 
         <tbody>
           <tr>
-            <td>Desenvolvimento web</td>
+            <td className="title">Desenvolvimento web</td>
+            <td className="income">R$12.000</td>
+            <td>Desenvolvimento</td>
+            <td>02/02/2023</td>
+          </tr>
+          <tr>
+            <td className="title">Conta de luz</td>
+            <td className="outcome">- R$1.000</td>
+            <td>Contas a pagar</td>
+            <td>03/05/2022</td>
           </tr>
         </tbody>
-      </table> */}
+      </table>
     </Container>
   )
 }
