@@ -1,7 +1,11 @@
 import logo from '../../assets/Symbol.svg'
-import { Container, Content, Button } from './styles'
+import { Container, Content } from './styles'
 
-const Header = () => {
+interface HeaderProps {
+  openNewTransaction : ()=> void;
+}
+
+const Header = ({openNewTransaction}: HeaderProps) => {
   return (
     <Container>
       <Content>
@@ -9,7 +13,7 @@ const Header = () => {
           <img src={logo} alt="MW Money" />
           <h1 style={{color:'#ffffff', fontSize:'1.3rem'}}>mw money</h1>
         </div>
-        <Button>Nova transação</Button>
+        <button onClick={openNewTransaction}>Nova transação</button>
       </Content>
     </Container>
   )
