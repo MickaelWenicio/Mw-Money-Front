@@ -2,11 +2,10 @@ import incomeImg from '../../assets/up.svg'
 import expenseImg from '../../assets/down.svg'
 import total from '../../assets/money.svg'
 import { Container } from "./styles"
-import { useContext } from 'react'
-import { TransactionsContext } from '../../hooks/useTransactions'
+import { useTransactions } from '../../hooks/useTransactions'
 
 const Summary = () => {
-  const {transactions} = useContext(TransactionsContext)
+  const {transactions} = useTransactions()
   console.log(transactions)
 
 
