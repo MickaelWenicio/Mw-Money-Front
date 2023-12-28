@@ -1,16 +1,16 @@
-import { useEffect } from "react"
+import { useContext, useEffect, useState } from "react"
 import { Container } from "./styles"
+import { TransactionsContext } from "../../hooks/useTransactions";
 
-const Transactions = () => {
+const TransactionsTable = () => {
 
-  useEffect(()=>{
-    const fetchData = async()=>{
-      const response = await fetch('http://localhost:5173/api/transactions')
-      const data = await response.json()
-      console.log(data)
-    }
-    fetchData()
-  },[])
+  const { transactions } = useContext(TransactionsContext)
+
+  console.log(transactions)
+
+  if (!transactions) {
+    return <p>Carregando transações...</p>; // ou qualquer lógica adequada para o estado de carregamento
+  }
 
   return (
     <Container>
@@ -25,22 +25,26 @@ const Transactions = () => {
         </thead>
 
         <tbody>
-          <tr>
-            <td className="title">Desenvolvimento web</td>
-            <td className="income">R$12.000</td>
-            <td>Desenvolvimento</td>
-            <td>02/02/2023</td>
-          </tr>
-          <tr>
-            <td className="title">Conta de luz</td>
-            <td className="outcome">- R$1.000</td>
-            <td>Contas a pagar</td>
-            <td>03/05/2022</td>
-          </tr>
+          {transactions.map((transaction)=>(
+              <tr key={transaction.id}>
+                <td className="title">{transaction.title}</td>
+                <td className={transaction.type}>
+                  {new Intl.NumberFormat('pt-BR',{
+                    style: 'currency',
+                    currency:'BRL'
+                  }).format(transaction.amount)}
+                </td>
+                <td>{transaction.category}</td>
+                <td>
+                  {new Intl.DateTimeFormat('pt-BR').format(
+                    new Date(transaction.createdAt)
+                  )}</td>
+              </tr>
+          ))}
         </tbody>
       </table>
     </Container>
   )
 }
 
-export default Transactions
+export default TransactionsTable
