@@ -13,16 +13,12 @@ Before getting started, make sure you have <code><strong>Node.js</strong></code>
 <ol>
   <li>
      Clone the repository to your local environment: <br>
-     <code>git clone https://github.com/your-username/project-name.git</code>
+     <code>git clone https://github.com/MickaelWenicio/mw-money.git</code>
   </li> <br>
   <li>
    Navigate to the project directory: <br>
    <code>cd project-name</code>
-  </li>
-  <li>
-    Navigate to the project directory: <br>
-    <code>cd project-name</code>
-   </li>
+  </li> <br>
   <li>
     Install the dependencies using npm (or Yarn if you prefer): <br>
     <code>npm install</code>
