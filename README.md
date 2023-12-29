@@ -30,4 +30,4 @@ Before getting started, make sure you have <code><strong>Node.js</strong></code>
 After installing the dependencies, you can start the local development environment. Run the following command: <br>
 <code>npm run dev</code>
 
-This command will start the development server. Open your browser and navigate to <code>http://localhost:5173/mw-money</code> to view the application.
+This command will start the development server.
