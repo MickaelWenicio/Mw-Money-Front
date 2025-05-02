@@ -5,9 +5,7 @@ import Transactions from '../TransactionsTable/index.tsx'
 const Dashboard = () => {
   return (
     <Container>
-        <Summary>
-        
-        </Summary>
+        <Summary/>
         <Transactions/>
     </Container>
   )

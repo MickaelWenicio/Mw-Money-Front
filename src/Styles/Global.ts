@@ -4,13 +4,11 @@ const GlobalStyle = createGlobalStyle`
     :root{
         --background: #f0f2f5;
         --red: #e52e40;
-        --blue:#5429CC;
+        --purple: #2D1B69;
+        --light-purple: #6933ff;
         --green: #33cc95;
-
-        --blue-light: #6933ff;
-        --text-title: #363f5f;
-        --text-body: #969cb3;
-        
+        --text-title: #374151;
+        --text-body: #4B5563;
         --shape: #ffffff;
     }
 
@@ -37,7 +35,7 @@ const GlobalStyle = createGlobalStyle`
     }
 
     body{
-        background: var(--background);
+        background: var(--purple);
         -webkit-font-smoothing: antialiased;
     }
 
