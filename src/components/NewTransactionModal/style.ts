@@ -1,9 +1,22 @@
-import {styled} from "styled-components";
+import {styled, keyframes} from "styled-components";
+
+const shake = keyframes`
+  0% { transform: translateX(0); }
+  20% { transform: translateX(-5px); }
+  40% { transform: translateX(5px); }
+  60% { transform: translateX(-5px); }
+  80% { transform: translateX(5px); }
+  100% { transform: translateX(0); }
+`;
 
 export const Content = styled.div`
     display: flex;
     flex-direction:column;
     border-radius: 20px;
+
+    .shake {
+        animation: shake 0.4s ease;
+    }
 
     h2{
         color: var(--text-title);
@@ -11,6 +24,13 @@ export const Content = styled.div`
         font: 1.5rem;
         margin-bottom: 2rem;
     }
+
+    p {
+        color: var(--red);
+        font-weight: 500;
+        animation: ${shake} 0.2s ease;
+    }
+
 
     form{
         display: flex;
