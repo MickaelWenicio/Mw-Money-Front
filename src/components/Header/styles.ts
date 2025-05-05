@@ -23,6 +23,7 @@ export const Content = styled.div`
     h1 {
         color: #fff;
         font-size: 1.3rem;
+        user-select: none;
     }
 
     button {
