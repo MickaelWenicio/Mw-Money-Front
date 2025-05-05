@@ -1,9 +1,11 @@
 import { Container } from "./styles"
 import { useTransactions } from "../../hooks/useTransactions";
+import trash from "../../assets/trash.svg";
+
 
 const TransactionsTable = () => {
 
-  const { transactions } = useTransactions()
+  const { transactions, deleteTransaction } = useTransactions()
 
   const renderTransactions = () =>{
     return (
@@ -23,6 +25,9 @@ const TransactionsTable = () => {
                     new Date(transaction.createdAt)
                   )}
                 </td>
+                <td>
+                  <img src={trash} alt="deletar" onClick={()=> deleteTransaction(transaction.id)} />
+                </td>
               </tr>
           ))}
         </tbody>
@@ -40,10 +45,11 @@ const TransactionsTable = () => {
             <th>Valor</th>
             <th>Categoria</th>
             <th>Data</th>
+            <th></th>
           </tr>
         </thead>
           {
-            transactions.length ? renderTransactions() : <tbody><td colSpan={4} style={{textAlign: 'center'}}> Sem Transações </td></tbody>
+            transactions.length ? renderTransactions() : <tbody><td colSpan={5} style={{textAlign: 'center'}}> Sem Transações </td></tbody>
           }
       </table>
     </Container>
