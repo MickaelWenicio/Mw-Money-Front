@@ -21,6 +21,7 @@ const TransactionModal = ({ModalIsOpen, onRequestCloseModal}:TransactionModalPro
     const [value, setValue] = useState(0)
     const [category, setCategory] = useState('')
     const [type, setType] = useState('')
+    const [valueInput, setValueInput] = useState('')
 
 
     async function handleCreateNewTransaction (e: FormEvent) {
@@ -38,8 +39,28 @@ const TransactionModal = ({ModalIsOpen, onRequestCloseModal}:TransactionModalPro
         onRequestCloseModal() 
     }
 
+    function formatCurrency(value: string) {
+        const numericValue = value.replace(/\D/g, '')
+        const parsed = parseFloat(numericValue) / 100
+      
+        if (isNaN(parsed)) return ''
+        
+        return parsed.toLocaleString('pt-BR', {
+          style: 'currency',
+          currency: 'BRL'
+        })
+    }
 
-  return (
+    function handleValueChange(e: React.ChangeEvent<HTMLInputElement>) {
+        const rawValue = e.target.value
+        const formatted = formatCurrency(rawValue)
+        setValueInput(formatted)
+
+        const numeric = Number(rawValue.replace(/\D/g, '')) / 100
+        setValue(numeric)
+    }
+
+    return (
         <Modal 
             isOpen={ModalIsOpen} 
             onRequestClose={onRequestCloseModal}
@@ -55,10 +76,19 @@ const TransactionModal = ({ModalIsOpen, onRequestCloseModal}:TransactionModalPro
                 </button>
                 <h2>Cadastrar Transação</h2>
                 <form onSubmit={handleCreateNewTransaction}>
-                    <input type="text" placeholder='Título' onChange={e => setTitle(e.target.value)}/>
-
-                    <input type="number" placeholder='Valor' onChange={e => setValue(Number(e.target.value))}/>
+                    <label htmlFor="title">Título
+                        <input type="text" placeholder='Título' name="title" onChange={e => setTitle(e.target.value)}/>
+                    </label>
                     
+                    <label htmlFor="value"> Valor
+                    <input 
+                        type="text" 
+                        name='value' 
+                        placeholder='R$ 0,00' 
+                        value={valueInput}
+                        onChange={handleValueChange}
+                        />                    
+                    </label>
                     {/* nesse caso o botão é alterado altomaticamente, pois o que determina o estilo dele é a variavel "type", então se o primeiro botão for clicado o isActive do mesmo botão é dado com true, pois a variável type será setada como income, então o estilo dele é alterado, porém, se o segundo botão for clicado, o type é alterado para outcome, fazendo o isActive do primeiro botão receber false, e fazendo-o voltar ao estilo padrão enquanto o segundo botão recebe o estilo.*/}
                     <TransactionTypeContainer>
                         <RadioBox 
@@ -86,7 +116,7 @@ const TransactionModal = ({ModalIsOpen, onRequestCloseModal}:TransactionModalPro
                 </form>
             </Content>
         </Modal>
-  )
+    )
 }
 
 export default TransactionModal

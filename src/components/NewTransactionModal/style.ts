@@ -3,10 +3,11 @@ import {styled} from "styled-components";
 export const Content = styled.div`
     display: flex;
     flex-direction:column;
+    border-radius: 20px;
 
     h2{
         color: var(--text-title);
-        text-align: center;
+        text-align: left;
         font: 1.5rem;
         margin-bottom: 2rem;
     }
@@ -14,19 +15,33 @@ export const Content = styled.div`
     form{
         display: flex;
         flex-direction: column;
+        gap: 15px;
+
+        label {
+            color: var(--text-title);
+            font-weight: 500;
+        }
 
         input{
             width: 100%;
-            padding: 0 1.5rem;
-            height: 4rem;
-            border-radius: 0.25rem;
-            background: #e7e9ee;
+            padding: 0 1rem;
+            height: 3.5rem;
+            border-radius: 0.5rem;
+            background: #f7f8f9;
+            color: var(--text-body);
+            margin: 3px 0;
 
-            border: 1px solid #d7d7d7;
+            border: 1px solid #d6d6d6;
             font-weight: 400;
             font-size: 1rem;
             outline: none;
- 
+
+            transition: all ease-in-out .1s;
+            
+            &:focus {
+                box-shadow: 0 0 1px 2px color-mix(in srgb, var(--purple) 60%, transparent);
+            }
+
             &::placeholder{
                 color: var(--text-body);
             }
@@ -40,10 +55,9 @@ export const Content = styled.div`
             width: 100%;
             padding: 0 1.5rem;
             height: 4rem;
-            border-radius: 0.25rem;
+            border-radius: 0.5rem;
             color: #fff;
             background: var(--green);
-            margin-top: 1.5rem;
             font-size: 1rem;
             border: none;
 
@@ -60,8 +74,6 @@ export const TransactionTypeContainer = styled.div`
     width: 100%;
     display: flex;
     flex-direction: row;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
     justify-content: space-between;
 
     img{
@@ -81,26 +93,39 @@ const colors = {
     red: '#e52e4d30'
 }
 
+const borderColors = {
+    green: '#33cc95',
+    red: '#e52e4d',
+}
+
+const activeTexts = {
+    green: '#4ba886',
+    red: '#894f53',
+}
+
 export const RadioBox = styled.button<RadioBoxProps>`
         width: 49%;
         display: flex;
         align-items: center;
+
+        border: 1px solid ${({ isActive, activeColor }) =>
+            isActive ? borderColors[activeColor] : '#4B556335'};
+
         justify-content: center;
-        border: solid 2px #d7d7d7;
         padding: 1rem;
-        border-radius: 0.25rem;
-        background: ${({isActive, activeColor})=> isActive ? colors[activeColor] : 'transparent'};
+        border-radius: 0.5rem;
+        background: ${({ isActive, activeColor }) =>
+            isActive ? colors[activeColor] : 'transparent'};
 
         span{
             display: inline-block;
             font-size: 1rem;
-            color: var(--text-title);
+
+            color: ${({ isActive, activeColor }) =>
+                isActive ? activeTexts[activeColor] : '#4B5563'};
+
             margin-left: 1rem;
         }
         
-        transition: border .3s ease-in-out;
-
-        &:hover{
-        border-color: #bbb;
-        }
+        transition: border .2s ease-in-out;
 `

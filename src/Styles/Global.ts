@@ -62,12 +62,13 @@ const GlobalStyle = createGlobalStyle`
     }
 
     .react-modal-content{
-        background-color: var(--background);
+        outline: none;
+        background-color: #f7f8f9;
         width: 100%;
-        max-width: 576px;
+        max-width: 490px;
         padding: 3rem;
         position: relative;
-        border-radius: 0.25em;
+        border-radius: 0.8em;
     }
 
     .react-modal-close{
@@ -76,8 +77,6 @@ const GlobalStyle = createGlobalStyle`
         top: 1.5rem;
         background: none;
         border: none;
-
-        transition: 0.5s ease;
 
         &:hover{
             filter: brightness(0.5);
